@@ -11,6 +11,8 @@
 |
 */
 
-Route::any('/', function () {
+Route::get('/', function () {
     return view('game');
 });
+
+Route::resource('games', 'GameController');
