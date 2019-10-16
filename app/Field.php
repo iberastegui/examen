@@ -36,4 +36,22 @@ class Field extends Model
         return User::where('id', $id)
             ->update(['current_status_id' => $status_id]);
     }
+
+    public static function createFields(Game $game)
+    {
+        for ($row = 1; $row <= $game->rows; $row++) {
+            for ($column = 1; $column <= $game->columns; $column++) {
+                $status_id = rand(1, 2);
+                $values['coordinate_x'] = $column;
+                $values['coordinate_y'] = $row;
+
+                $values['status_id'] = $status_id;
+                $values['current_status_id'] = $status_id;
+
+                $game->fields()->create($values);
+            }
+        }
+
+        return $game;
+    }
 }

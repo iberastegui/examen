@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Field;
 use App\Game;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,7 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        return Game::create($request->all());
+        $game = Game::create($request->all());
+        return Field::createFields($game);
     }
 }

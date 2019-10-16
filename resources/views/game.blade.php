@@ -20,6 +20,12 @@
 
             <div class="content">
                 <div id="grid">
+                    <div class="row">
+                        <div class=" square">
+                        One of three columns
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -35,22 +41,7 @@
                 //var rows;
                 //var columns;
 
-                var $row = $("<div />", {
-                    class: 'row'
-                });
 
-                var $square = $("<div />", {
-                    class: 'square'
-                });
-
-                //add columns to the the temp row object
-                for (var i = 0; i < columns; i++) {
-                    $row.append($square.clone());
-                }
-                //clone the temp row object with the columns to the wrapper
-                for (var i = 0; i < rows; i++) {
-                    $("#grid").append($row.clone());
-                }
 
                 $( "#start" ).click(function( event ) {// send the configuration to start the game
 
@@ -65,7 +56,22 @@
                         data:{rows:rows, columns:columns},
                         success:function(data) {
                             console.log(data);
+                            var $row = $("<div />", {
+                                class: 'row'
+                            });
 
+                            var $square = $("<div />", {
+                                class: 'square'
+                            });
+
+                            //add columns to the the temp row object
+                            for (var i = 0; i < columns; i++) {
+                                $row.append($square.clone());
+                            }
+                            //clone the temp row object with the columns to the wrapper
+                            for (var i = 0; i < rows; i++) {
+                                $("#grid").append($row.clone());
+                            }
 
                             $('#modal-new-game').modal('hide');
                         }

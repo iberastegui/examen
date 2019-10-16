@@ -72,9 +72,12 @@ body {
 .square {
     width: 100px;
     height: 100px;
-    margin: 0px;
+    margin: 2px;
     outline: 1px solid;
     display: inline-block;
-    float: left;
     background: #ffffff;
+}
+
+.row {
+    margin: 0px;
 }
