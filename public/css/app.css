@@ -10700,3 +10700,19 @@ body {
   margin-bottom: 30px;
 }
 
+.grid {
+  width: auto;
+  height: auto;
+  background: #313131;
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+  margin: 0px;
+  outline: 1px solid;
+  display: inline-block;
+  float: left;
+  background: #ffffff;
+}
+

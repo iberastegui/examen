@@ -12,7 +12,7 @@ class Field extends Model
      * @var array
      */
     protected $fillable = [
-        'coordinate_x', 'coordinate_y', 'status', 'game_id'
+        'coordinate_x', 'coordinate_y', 'status_id', 'game_id', 'current_status_id'
     ];
 
 
@@ -29,5 +29,11 @@ class Field extends Model
     public function currentStatus()
     {
         return $this->belongsTo('App\Status');
+    }
+
+    public static function updateCurrentStatus($id, $status_id)
+    {
+        return User::where('id', $id)
+            ->update(['current_status_id' => $status_id]);
     }
 }

@@ -12,16 +12,14 @@ class StatusTableSeeder extends Seeder
      */
     public function run()
     {
-        $status = new Status();
-        $status->description = 'Mined';
-        $status->save();
+        $statuses = ['Mined', 'Free', 'Flaged'];
 
-        $status = new Status();
-        $status->description = 'Free';
-        $status->save();
-
-        $status = new Status();
-        $status->description = 'Flaged';
-        $status->save();
+        foreach ($statuses as $status) {
+            DB::table('statuses')->insert([
+                'description' => $status,
+                'created_at' => date('Y-m-d H:m:s'),
+                'updated_at' => date('Y-m-d H:m:s')
+            ]);
+        }
     }
 }
