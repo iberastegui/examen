@@ -12,13 +12,16 @@ class StatusTableSeeder extends Seeder
      */
     public function run()
     {
-        $accountType = new Status();
-        $accountType->description = 'Mined';
+        $status = new Status();
+        $status->description = 'Mined';
+        $status->save();
 
-        $accountType = new Status();
-        $accountType->description = 'Free';
+        $status = new Status();
+        $status->description = 'Free';
+        $status->save();
 
-        $accountType = new Status();
-        $accountType->description = 'Flaged';
+        $status = new Status();
+        $status->description = 'Flaged';
+        $status->save();
     }
 }
