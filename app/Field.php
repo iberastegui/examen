@@ -52,6 +52,6 @@ class Field extends Model
             }
         }
 
-        return $game;
+        return $game->fields->sortBy('coordinate_y,coordinate_x');
     }
 }
