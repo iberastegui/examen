@@ -20,12 +20,6 @@
 
             <div class="content">
                 <div id="grid">
-                    <div class="row">
-                        <div class=" square">
-                        One of three columns
-                        </div>
-
-                    </div>
                 </div>
             </div>
         </div>
@@ -41,10 +35,14 @@
                 //var rows;
                 //var columns;
 
-
+                var $square = $("<div />", {
+                    class: 'square'
+                });
+                var $row = $("<div />", {
+                    class: 'row'
+                });
 
                 $( "#start" ).click(function( event ) {// send the configuration to start the game
-
 
                     event.preventDefault();
                     var rows = $("#rows").val();
@@ -54,15 +52,25 @@
                         type:'POST',
                         url:'{{ route('games.store') }}',
                         data:{rows:rows, columns:columns},
-                        success:function(data) {
-                            console.log(data);
-                            var $row = $("<div />", {
-                                class: 'row'
-                            });
+                        success:function(result) {
 
-                            var $square = $("<div />", {
-                                class: 'square'
+                            var currentRow= 0;
+
+                            $.each(result, function(i, data) {
+                                $square.data('x',data.coordinate_x);
+                                $square.data('y',data.coordinate_y);
+                                if (data.coordinate_y == currentRow) {
+                                    $row.append($square.clone());
+                                }else {
+                                    currentRow++;
+                                    $("#grid").append($row.clone());
+                                    $row = $("<div />", {
+                                        class: 'row'
+                                    });
+                                }
                             });
+                            /*
+                            console.log(data);
 
                             //add columns to the the temp row object
                             for (var i = 0; i < columns; i++) {
@@ -72,6 +80,7 @@
                             for (var i = 0; i < rows; i++) {
                                 $("#grid").append($row.clone());
                             }
+                            //*/
 
                             $('#modal-new-game').modal('hide');
                         }
