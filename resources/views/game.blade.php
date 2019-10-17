@@ -32,14 +32,11 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script>
             $(document).ready(function() {
-                //var rows;
-                //var columns;
 
-                var $square = $("<div />", {
-                    class: 'square'
-                });
-                var $row = $("<div />", {
-                    class: 'row'
+
+
+                $(document).on('click','.square',function(){// first attempt to retrieve the data.x data.y from the square selected
+                    console.log($(this));
                 });
 
                 $( "#start" ).click(function( event ) {// send the configuration to start the game
@@ -57,8 +54,17 @@
                             var currentRow= 0;
 
                             $.each(result, function(i, data) {
-                                $square.data('x',data.coordinate_x);
-                                $square.data('y',data.coordinate_y);
+
+                                var $row = $("<div />", {
+                                    class: 'row'
+                                });
+
+                                var $square = $("<div />", {
+                                    class: 'square',
+                                    id : data.id,
+                                    value : data.status_id
+                                });
+
                                 if (data.coordinate_y == currentRow) {
                                     $row.append($square.clone());
                                 }else {
@@ -69,18 +75,6 @@
                                     });
                                 }
                             });
-                            /*
-                            console.log(data);
-
-                            //add columns to the the temp row object
-                            for (var i = 0; i < columns; i++) {
-                                $row.append($square.clone());
-                            }
-                            //clone the temp row object with the columns to the wrapper
-                            for (var i = 0; i < rows; i++) {
-                                $("#grid").append($row.clone());
-                            }
-                            //*/
 
                             $('#modal-new-game').modal('hide');
                         }
